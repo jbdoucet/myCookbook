@@ -3,15 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppDashboardComponent } from './app-dashboard/app-dashboard.component';
 
 const routes: Routes = [
-  { path: 'recipes', 
-    loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule) 
-  },
   {
     path: '',
     component: AppDashboardComponent
-    //redirectTo: '',
-    //pathMatch: 'full'
-  }
+  },
+  { path: 'recipe', 
+    loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule) 
+  },
+
 ];
 
 @NgModule({
