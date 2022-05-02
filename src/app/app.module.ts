@@ -14,6 +14,7 @@ import { AppDashboardComponent } from './app-dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatMenuModule } from '@angular/material/menu';
     BrowserAnimationsModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

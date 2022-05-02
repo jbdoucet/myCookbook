@@ -10,11 +10,20 @@ import { MessageService } from '../../_services/message.service';
 })
 export class RecipeMockService {
 
+  recipes: Recipe[] = [];
+  
   constructor(private messageService: MessageService) { }
 
-  getRecipes(): Observable<Recipe[]> {
-    const recipes = of(RECIPES);
-    this.messageService.add('RecipeMockService: fetched recipes');
-    return recipes;
+  //getRecipes(): Observable<Recipe[]> {
+  //  const recipes = of(RECIPES);
+  //  this.messageService.add('RecipeMockService: fetched recipes');
+  //  return recipes;
+  //}
+
+  getRecipes(){
+  //const recipes = of(RECIPES);
+  const recipes = RECIPES;
+  this.messageService.add('RecipeMockService: fetched recipes');
+  return recipes;
   }
 }

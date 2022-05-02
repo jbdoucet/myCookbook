@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
 
 import { Recipe } from './_models/recipe.model';
 import { RecipeMockService } from './_mocks/recipe-mock.service';
@@ -9,25 +12,28 @@ import { MessageService } from '../_services/message.service';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent implements AfterViewInit {
+  displayedColumns: string[] = ['id', 'name', 'description', 'imagePath'];
+  dataSource: MatTableDataSource<Recipe>;
 
-  selectedRecipe?: Recipe;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  recipes: Recipe[] = [];
-
-  constructor(private recipeMockService: RecipeMockService, private messageService: MessageService) { }
-
-  ngOnInit(): void {
-    this.getRecipes();
+  constructor(private recipeMockService: RecipeMockService, private messageService: MessageService) {
+    this.dataSource = new MatTableDataSource(recipeMockService.recipes);
   }
 
-  onSelect(recipe: Recipe): void {
-    this.selectedRecipe = recipe;
-    this.messageService.add(`RecipeComponent: Selected recipe id=${recipe.id}`);
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-  getRecipes(): void {
-    this.recipeMockService.getRecipes()
-        .subscribe(recipes => this.recipes = recipes);
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+
   }
 }
