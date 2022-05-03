@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
+//import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 
 import { Recipe } from './_models/recipe.model';
@@ -17,16 +17,18 @@ export class RecipeComponent implements AfterViewInit {
   dataSource: MatTableDataSource<Recipe>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  //@ViewChild(MatSort) sort!: MatSort;
 
   constructor(private recipeMockService: RecipeMockService, private messageService: MessageService) {
-    this.dataSource = new MatTableDataSource(recipeMockService.recipes);
+    //this.dataSource = new MatTableDataSource(this.getRecipes());
+    this.dataSource = new MatTableDataSource(recipeMockService.getRecipes());
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    //this.dataSource.sort = this.sort;
   }
+  
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();

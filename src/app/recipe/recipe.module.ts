@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { RecipeRoutingModule } from './recipe-routing.module';
 import { RecipeComponent } from './recipe.component';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     RecipeRoutingModule,
     MatFormFieldModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule
   ]
 })
 export class RecipeModule { }
