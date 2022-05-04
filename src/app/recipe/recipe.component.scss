@@ -1,24 +1,16 @@
-  table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
+table {
+  width: 100%;
+}
 
-  .grid-container {
-    margin: 20px;
-  }
-  
-  .tablediv {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-  }
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.content-container {
+  margin: 20px;
+}
